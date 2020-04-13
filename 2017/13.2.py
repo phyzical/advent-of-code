@@ -19,10 +19,18 @@ def solve(input):
     score = 1
     count = -1
     while score > 0:
-        score = getScore(copy(solveInstructions))
-        print(solveInstructions[98])
-        solveInstructions = doTick(copy(solveInstructions))
         count += 1
+        isInvalid = False
+        isInvalidKey = ''
+        for solveInstruction in solveInstructions:
+            if solveInstructions[solveInstruction]['value'] > 0 and count/solveInstructions[solveInstruction]['value'] == 1 and count % solveInstructions[solveInstruction]['value'] == 0:
+                isInvalid = True
+                isInvalidKey = solveInstruction
+        if isInvalid == False:
+            score = getScore(copy(solveInstructions))
+        solveInstructions = doTick(copy(solveInstructions))
+
+
     return count
 
 def getScore(scoreInstructions):
@@ -63,8 +71,8 @@ def doTick(tickInstructions):
         }
     return tickInstructions
 
-#testOneResult = solve(open("2017/13test.txt", "r").read())
-#print(testOneResult, testOneResult == 10)
+testOneResult = solve(open("2017/13test.txt", "r").read())
+print(testOneResult, testOneResult == 10)
 print(solve(open("2017/13.txt", "r").read()))
 
 

@@ -31,6 +31,16 @@ def solve(iterations, input):
             cleanedRules[B2 + A1 + '/' + B1 + A2] = cleanedRule[1]
             cleanedRules[A2 + B2 + '/' + A1 + B1] = cleanedRule[1]
             cleanedRules[B1 + A2 + '/' + B2 + A1] = cleanedRule[1]
+            AFlipVert = B[0]+B[1]
+            BFlipVert = A[0]+A[1]
+            A1 = AFlipVert[0]
+            A2 = AFlipVert[1]
+            B1 = BFlipVert[0]
+            B2 = BFlipVert[1]
+            cleanedRules[AFlipVert + '/' + BFlipVert] = cleanedRule[1]
+            cleanedRules[B2 + A1 + '/' + B1 + A2] = cleanedRule[1]
+            cleanedRules[A2 + B2 + '/' + A1 + B1] = cleanedRule[1]
+            cleanedRules[B1 + A2 + '/' + B2 + A1] = cleanedRule[1]
         else:
             # a1 b1 c1
             # a2 b2 c2
@@ -48,7 +58,6 @@ def solve(iterations, input):
             # b1 b2 b3
             # a1 a2 a3
             #C1,C2,C3/B1,B2,B3/A1,A2,A3
-
             tempRule = rule.split('/')
             A = tempRule[0]
             B = tempRule[1]
@@ -66,26 +75,42 @@ def solve(iterations, input):
             cleanedRules[A3 + A2 + A1 + '/' + B3 + B2 + B1 + '/' + C3 + C2 + C1] = cleanedRule[1]
             cleanedRules[C3 + B3 + A3 + '/' + C2 + B2 + A2 + '/' + C1 + B1 + A1] = cleanedRule[1]
             cleanedRules[C1 + C2 + C3 + '/' + B1 + B2 + B3 + '/' + A1 + A2 + A3] = cleanedRule[1]
-            A = A[::-1]
-            B = B[::-1]
-            C = C[::-1]
-            A1 = A[0]
-            A2 = A[1]
-            A3 = A[2]
-            B1 = B[0]
-            B2 = B[1]
-            B3 = B[2]
-            C1 = C[0]
-            C2 = C[1]
-            C3 = C[2]
-            cleanedRules[A + '/' + B + '/' + C] = cleanedRule[1]
+            AFlipHori = A[::-1]
+            BFlipHori = B[::-1]
+            CFlipHori = C[::-1]
+            A1 = AFlipHori[0]
+            A2 = AFlipHori[1]
+            A3 = AFlipHori[2]
+            B1 = BFlipHori[0]
+            B2 = BFlipHori[1]
+            B3 = BFlipHori[2]
+            C1 = CFlipHori[0]
+            C2 = CFlipHori[1]
+            C3 = CFlipHori[2]
+            cleanedRules[AFlipHori + '/' + BFlipHori + '/' + CFlipHori] = cleanedRule[1]
+            cleanedRules[A3 + A2 + A1 + '/' + B3 + B2 + B1 + '/' + C3 + C2 + C1] = cleanedRule[1]
+            cleanedRules[C3 + B3 + A3 + '/' + C2 + B2 + A2 + '/' + C1 + B1 + A1] = cleanedRule[1]
+            cleanedRules[C1 + C2 + C3 + '/' + B1 + B2 + B3 + '/' + A1 + A2 + A3] = cleanedRule[1]
+            AFlipVert = C[0]+C[1]+C[2]
+            BFlipVert = B[0]+B[1]+B[2]
+            CFlipVert = A[0]+A[1]+A[2]
+            A1 = AFlipVert[0]
+            A2 = AFlipVert[1]
+            A3 = AFlipVert[2]
+            B1 = BFlipVert[0]
+            B2 = BFlipVert[1]
+            B3 = BFlipVert[2]
+            C1 = CFlipVert[0]
+            C2 = CFlipVert[1]
+            C3 = CFlipVert[2]
+            cleanedRules[AFlipVert + '/' + BFlipVert + '/' + CFlipVert] = cleanedRule[1]
             cleanedRules[A3 + A2 + A1 + '/' + B3 + B2 + B1 + '/' + C3 + C2 + C1] = cleanedRule[1]
             cleanedRules[C3 + B3 + A3 + '/' + C2 + B2 + A2 + '/' + C1 + B1 + A1] = cleanedRule[1]
             cleanedRules[C1 + C2 + C3 + '/' + B1 + B2 + B3 + '/' + A1 + A2 + A3] = cleanedRule[1]
     grid = '.#./..#/###'
     #    #..#/..../..../#..#
     for i in range(iterations):
-        print(grid,i)
+        print(i, grid)
         splitGrids = grid.split('/')
         gridSplit = 0
         if len(splitGrids[0]) % 2 == 0:
@@ -102,6 +127,7 @@ def solve(iterations, input):
                 newGrids[y].append(splitGrid[index:gridSplit+index])
                 index += gridSplit
             y += 1
+        print(newGrids)
         tempGrid = []
         for num in range(len(newGrids[0])):
             rule = ''
@@ -111,7 +137,6 @@ def solve(iterations, input):
                 rule += newGrid[num] + '/'
                 if index % gridSplit == 0:
                     rule = rule[:len(rule)-1]
-                    print(rule,index,num)
                     cleanedSplit = cleanedRules[rule].split("/")
                     if len(cleanedSplit) == 4:
                         currentGrid = ['','','','']

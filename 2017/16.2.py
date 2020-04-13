@@ -5,9 +5,12 @@ def solve(size,input):
     solveWord = ''
     for num in range(size):
         solveWord += letters[num]
+    initialSolveWord = solveWord
     solveWord = list(solveWord)
     i = 0
+    results = [initialSolveWord]
     while i < 1000000000:
+        i += 1
         for inputSplit in inputSplits:
             move = inputSplit
             if move[0] == 's':
@@ -35,13 +38,8 @@ def solve(size,input):
                         swapBIndex = index
                 solveWord[swapBIndex] = swapA
                 solveWord[swapAIndex] = swapB
-        if i % 1000 == 0:
-            print(i)
-        i += 1
-    result = ''
-    for char in solveWord:
-        result += char
-    return result
-
+        if (''.join(solveWord) == initialSolveWord):
+            return results[1000000000 % i]
+        results.append(''.join(solveWord))
 print(solve(16,open("2017/16.txt", "r").read()))
 

@@ -1,48 +1,34 @@
 def solve(input):
     result = ''
-    instructionLines = input.split('<')
+    instructionLine = input
     #{<a>,<a>,<a>,<a>}
     #{
     #a>,
     #a>,
     #a>,
     #a>}
-    #{{<!!>},{<!!>},{<!!>},{<!!>}}
-    #{{
-    #!!>},{
-    #!!>},{
-    #!!>},{
-    #!!>}}
-    #{{<<<<>}}
-    #{{
-    #
-    #
-    #
-    #>}}
+    removing = False
+    index = 0
+    cancel = False
+    while index < len(instructionLine):
+        currentChar = instructionLine[index]
 
-    result += instructionLines[0]
-    for instructionLine in instructionLines:
-        cleanedLine = ''
-        instructions = instructionLine.split('>')
-        keep = False
-        for instruction in instructions:
-            if keep == True:
-                cleanedLine += instruction
-                keep = False
-            if(len(instruction) > 0):
-                keepCount = 0
-                for index in range(instruction.count('!')):
-                    if index > 0:
-                        if instruction[len(instruction) - index] == '!':
-                            keepCount += 1
-                        else:
-                            break
-                if keepCount % 2 == 0 :
-                    keep = True
+
+        if removing == True:
+            instructionLine = instructionLine[:index] + instructionLine[index+1:]
+            if cancel == False and currentChar == '>':
+                removing = False
+        else:
+            if cancel == False and currentChar == '<':
+                removing = True
+                instructionLine = instructionLine[:index] + instructionLine[index+1:]
             else:
-                keep = True
-        result += cleanedLine
-    return result.replace('"', '')
+                index += 1
+        if currentChar == '!':
+            cancel = cancel == False
+        else:
+            cancel = False
+    return instructionLine.replace('"', '')
 
 def groups(inputs):
     currentScore = 0

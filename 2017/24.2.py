@@ -15,14 +15,19 @@ def solve(input):
         bridges.append(currentString)
         findNext(lineCopy,currentIndex,bridges,currentString,currentString)
 
+    maxBridgeLength = 0
     maxBridge = 0
     for bridge in bridges:
         bridgeTotal = 0
-        for splits in bridge.split('--'):
+        bridgeSplits = bridge.split('--')
+        for splits in bridgeSplits:
             for split in splits.split('/'):
                 bridgeTotal += int(split)
-        if bridgeTotal > maxBridge:
+        if len(bridgeSplits) > maxBridgeLength:
+            maxBridgeLength = len(bridgeSplits)
             maxBridge = bridgeTotal
+        elif len(bridgeSplits) == maxBridgeLength and bridgeTotal > maxBridge:
+            bridgeTotal = maxBridge
     return maxBridge
 
 def findNext(lineCopy,currentIndex,bridges,currentString,nextElement):
@@ -40,6 +45,6 @@ def findNext(lineCopy,currentIndex,bridges,currentString,nextElement):
          findNext(copy(lineCopy),applicableIndex,bridges,currentString +'--'+ applicableIndexes[applicableIndex],applicableIndexes[applicableIndex])
 
 testOneResult = solve(open("2017/24test.txt", "r").read())
-print(testOneResult, testOneResult == 31)
+print(testOneResult, testOneResult == 19)
 print(solve(open("2017/24.txt", "r").read()))
 

@@ -20,14 +20,21 @@ def solve(input):
                 found = True
         if found == False:
             parentNode = node
-
-    def checkNodes(nodesToCheck):
-        amounts = {}
-        for firstChild in nodesToCheck:
-            childAmt = int(nodes[firstChild])
+    def getTotal(firstChild):
+        childAmt = int(nodes[firstChild])
+        if nodesWhereChild.get(firstChild) != None:
             children = nodesWhereChild[firstChild]
             for child in children:
-                childAmt += int(nodes[child])
+                if nodesWhereChild.get(child) != None:
+                    childAmt += getTotal(child)
+                else:
+                    childAmt += int(nodes[child])
+
+        return childAmt
+    def checkNodes(nodesToCheck, parentNode,last):
+        amounts = {}
+        for firstChild in nodesToCheck:
+            childAmt = getTotal(firstChild)
             amounts[firstChild] = childAmt
         for amount in amounts:
             count = 0
@@ -38,14 +45,15 @@ def solve(input):
                 else:
                     differingAmount = amounts[amount2]
             if count == 1:
-                print(nodesToCheck,amounts)
-                print(int(nodes[amount]) - (amounts[amount] - differingAmount))
-                exit()
-        for newNode in nodesToCheck:
-            print(nodesWhereChild[newNode], newNode)
-            checkNodes(nodesWhereChild[newNode])
-    print(parentNode)
-    checkNodes(nodesWhereChild[parentNode])
-solve(open("2017/7.txt", "r").read())
-##idk...
+                if nodesWhereChild.get(amount) != None:
+                    return checkNodes(nodesWhereChild[amount],amount,int(nodes[amount]) - (amounts[amount] - differingAmount))
+        return last
+
+       # for newNode in nodesToCheck:
+            #return checkNodes(nodesWhereChild[newNode],newNode)
+    return checkNodes(nodesWhereChild[parentNode],parentNode,0)
+
+testOneResult = solve(open("2017/7test.txt", "r").read())
+print(testOneResult, testOneResult == 60)
+print(solve(open("2017/7.txt", "r").read()))
 

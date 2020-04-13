@@ -26,7 +26,7 @@ def solve(input):
             items[key] = value
         if command == 'sub':
             items[key] -= value
-        if command == 'mul':#-109894
+        if command == 'mul':
             count += 1
             items[key] *= value
         if command == 'jnz':

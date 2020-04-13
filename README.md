@@ -1,6 +1,9 @@
 # Advent Of Code
 
 just a repo for my mucking around learning new languages with advent of code
+
+to run any question simply `make YEAR-QUESTION-PART` i.e `make 2017-1-1`
+
 # 2015 in rust #
 
 01.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
@@ -220,16 +223,16 @@ just a repo for my mucking around learning new languages with advent of code
 21.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 21.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 
-22.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
-22.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+22.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
+22.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 
-23.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+23.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 23.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 
 24.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 24.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 
-25.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+25.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 25.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 
 # 2018 in elixir #

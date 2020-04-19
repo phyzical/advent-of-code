@@ -129,6 +129,7 @@ def solve(iterations, input):
             y += 1
         print(newGrids)
         tempGrid = []
+        checks = 0
         for num in range(len(newGrids[0])):
             rule = ''
             currentGrid = ['','','']
@@ -136,6 +137,7 @@ def solve(iterations, input):
                 index += 1
                 rule += newGrid[num] + '/'
                 if index % gridSplit == 0:
+                    checks += 1
                     rule = rule[:len(rule)-1]
                     cleanedSplit = cleanedRules[rule].split("/")
                     if len(cleanedSplit) == 4:
@@ -148,6 +150,7 @@ def solve(iterations, input):
                     rule = ''
             tempGrid += currentGrid
         grid = ''
+        print(checks,tempGrid)
         for gridItem in tempGrid:
             grid += gridItem + '/'
         grid = grid[:len(rule)-1]

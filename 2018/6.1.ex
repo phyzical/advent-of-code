@@ -5,8 +5,7 @@ defmodule DaySixPartOne do
     input |>
       Helper.splitStringByNewLine() |>
       parseInput |>
-      findLargestArea |>
-      IO.inspect
+      findLargestArea
   end
 
   def parseInput(word = [first|rest]) when word |> Kernel.length > 0 do
@@ -192,55 +191,8 @@ end
 
 #bl %{x: 4, y: 5},
 #tr   %{x: 7, y: 2}
-
+test1Res = DaySixPartOne.solve(File.read!('./2018/6test.txt'))
+test1Res |> IO.inspect
+(test1Res == 17) |> IO.inspect
 #2,2 == 4
-DaySixPartOne.solve("264, 340
-308, 156
-252, 127
-65, 75
-102, 291
-47, 67
-83, 44
-313, 307
-159, 48
-84, 59
-263, 248
-188, 258
-312, 240
-59, 173
-191, 130
-155, 266
-252, 119
-108, 299
-50, 84
-172, 227
-226, 159
-262, 177
-233, 137
-140, 211
-108, 175
-278, 255
-259, 209
-233, 62
-44, 341
-58, 175
-252, 74
-232, 63
-176, 119
-209, 334
-103, 112
-155, 94
-253, 255
-169, 87
-135, 342
-55, 187
-313, 338
-210, 63
-237, 321
-171, 143
-63, 238
-79, 132
-135, 113
-310, 294
-289, 184
-56, 259")
+DaySixPartOne.solve(File.read!('./2018/6.txt')) |> IO.inspect

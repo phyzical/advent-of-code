@@ -60,18 +60,12 @@ function solve(input,y,x){
         }
 
     })
-    let total = 0
     grid.map(y => {
-        y.map(x => {
-            if (x === '#') {
-                total++;
-            }
-        })
+        console.log(y.reduce((acc,x) => {
+            return acc + x
+        },''))
     })
-    return total
 
 }
-const test1Res = solve(fs.readFileSync(__dirname+'/8test.txt', 'utf8'),3,7);
-console.log(test1Res, test1Res === 6);
 
 console.log(solve(fs.readFileSync(__dirname+'/8.txt', 'utf8'),6,50));

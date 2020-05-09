@@ -3,15 +3,16 @@ const helpers = require("./helpers");
 const fs = require('fs');
 
 function solve(input,inputs){
-    let currentIndex = 0;
     inputs = inputs.split('')
     let instructions = input.split('\n')
-    while (currentIndex >= 0 && currentIndex < instructions.length) {
+    let currentIndex = instructions.length - 1;
+    while (currentIndex >= 0) {
         let instruction = instructions[currentIndex]
         const splits = instruction.split(' ')
         let x = null;
         let y = null;
         let newString = []
+        console.log(inputs,splits[0]+splits[1],instruction)
         switch(splits[0]+splits[1]) {
             case 'swapposition':
                 x = parseInt(splits[2]);
@@ -23,7 +24,6 @@ function solve(input,inputs){
             case 'swapletter':
                 x = splits[2];
                 y = splits[5];
-                // may only replace first occurance
                 inputs = inputs.join('').replace(x,'#').replace(y,x).replace('#',y).split('');
                 break;
             case 'reversepositions':
@@ -41,7 +41,7 @@ function solve(input,inputs){
                 x = parseInt(splits[2]);
                 inputs.map((item,i) => {
                     let newIndex;
-                    if (splits[1] == 'right') {
+                    if (splits[1] == 'left') {
                         newIndex = i + x
                         if (newIndex >= inputs.length) {
                             newIndex  = (newIndex % inputs.length)
@@ -56,6 +56,7 @@ function solve(input,inputs){
                 })
                 inputs = newString;
                 break;
+                // how can you know its previous index??
             case 'rotatebased':
                 x = splits[6];
                 let inc = 1;
@@ -66,15 +67,17 @@ function solve(input,inputs){
                 if (index >= 4){
                     inc += 1
                 }
+                console.log(inc)
                 inputs.map((item,i) => {
-                    let newIndex = i + inc
-                    if (newIndex >= inputs.length) {
-                        newIndex = (newIndex % inputs.length)
+                    let newIndex = i - inc
+                    if (newIndex < 0) {
+                        newIndex = inputs.length - Math.abs(newIndex % inputs.length)
                     }
                     newString[newIndex] = item
                 });
                 inputs = newString;
                 break;
+            // how can you know its previous index??
             case 'moveposition':
                 x = parseInt(splits[2]);
                 y = parseInt(splits[5]);
@@ -83,12 +86,12 @@ function solve(input,inputs){
                 inputs.splice(y,0,newString[0])
                 break;
         }
-        currentIndex++
-        console.log(inputs,inputs.length,splits[0]+splits[1],instruction)
+        currentIndex--
+        console.log(inputs,splits[0]+splits[1],instruction)
     }
     return inputs.join('')
 
 }
-const test1Res = solve(fs.readFileSync(__dirname+'/21test.txt', 'utf8'),'abcde');
-console.log(test1Res, test1Res === 'decab');
-console.log(solve(fs.readFileSync(__dirname+'/21.txt', 'utf8'),'abcdefgh'));
+const test1Res = solve(fs.readFileSync(__dirname+'/21test.txt', 'utf8'),'decab');
+console.log(test1Res, test1Res === 'abcde');
+//console.log(solve(fs.readFileSync(__dirname+'/21.txt', 'utf8'),'fbgdceah'));

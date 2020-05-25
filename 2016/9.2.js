@@ -27,11 +27,8 @@ function solve(input){
 
             let sliceString = slice
             for (let i = 0; i < parseInt(multiplier) - 1; i++) {
-                console.log(i,parseInt(multiplier),sliceString.length, slice.length)
-
                 sliceString = sliceString + slice
             }
-            //console.log(input,sliceString)
 
             input = input.slice(0,startIndex) + sliceString + remaining
             index = (input.slice(0,startIndex) + sliceString).length

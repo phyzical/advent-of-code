@@ -37,6 +37,9 @@ function solve(input){
             })
         })
     })
+    let currentX = grid[0].length - 1
+    let startY  = 0
+
     return pairs.length
 }
 console.log(solve(fs.readFileSync(__dirname+'/22.txt', 'utf8')));

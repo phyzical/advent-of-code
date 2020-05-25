@@ -3,7 +3,7 @@ const fs = require('fs');
 function solve(input){
     const instructions = input.split('\n')
     let floors = [
-        {generators: [],chips: []},
+        {generators: ['elerium','dilithium'],chips: ['elerium','dilithium']},
         {generators: [],chips: []},
         {generators: [],chips: []},
         {generators: [],chips: []},
@@ -51,7 +51,7 @@ function move(input){
 
 }
 
-//NOTE ENDED UP SOLVING BY HAND IN ABOUT 30 SECONDS
+//NOTE ENDED UP SOLVING BY HAND IN ABOUT 10 minutes SECONDS
 
 
 //const test1Res = solve(fs.readFileSync(__dirname+'/11test.txt', 'utf8'));

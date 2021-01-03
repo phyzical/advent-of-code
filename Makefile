@@ -271,7 +271,7 @@ run-2018:
 2018-6-2:
 	make run-2018 FILE=2018/6.2.ex
 
-install-dependencies-2020:
+2020-dependencies:
 	cd 2020 && bundle install
 
 run-2020:

@@ -273,7 +273,7 @@ run-2018:
 
 install-dependencies-2020:
 	cd 2020 && bundle install
-	
+
 run-2020:
 	ruby ${FILE}
 
@@ -343,6 +343,40 @@ run-2020:
 	make run-2020 FILE=2020/13.2.rb
 2020-14-1:
 	make run-2020 FILE=2020/14.1.rb
+2020-14-2:
+	make run-2020 FILE=2020/14.2.rb
+2020-15-1:
+	make run-2020 FILE=2020/15.1.rb
+2020-15-2:
+	make run-2020 FILE=2020/15.2.rb
+2020-16-1:
+	make run-2020 FILE=2020/16.1.rb
+2020-16-2:
+	make run-2020 FILE=2020/16.2.rb
+2020-17-1:
+	make run-2020 FILE=2020/17.1.rb
+2020-17-2:
+	make run-2020 FILE=2020/17.2.rb
+2020-18-1:
+	make run-2020 FILE=2020/18.1.rb
+2020-18-2:
+	make run-2020 FILE=2020/18.2.rb
+2020-19-1:
+	make run-2020 FILE=2020/19.1.rb
+2020-19-2:
+	make run-2020 FILE=2020/19.2.rb
+2020-20-1:
+	make run-2020 FILE=2020/20.1.rb
+2020-20-2:
+	make run-2020 FILE=2020/20.2.rb
+2020-21-1:
+	make run-2020 FILE=2020/21.1.rb
+2020-21-2:
+	make run-2020 FILE=2020/21.2.rb
+2020-22-1:
+	make run-2020 FILE=2020/22.1.rb
+2020-22-2:
+	make run-2020 FILE=2020/22.2.rb
 
 
 

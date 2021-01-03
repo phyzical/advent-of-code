@@ -6,12 +6,11 @@ module DayFourteenPartOne
   def solve(file)
     inputs = prepare_inputs(file)
     masked_inputs = apply_mask(inputs)
-    ap masked_inputs
     find_sum(masked_inputs)
   end
 
   def find_sum(inputs)
-    inputs.reduce(0) do |acc, input|
+    inputs.values.reduce(0) do |acc, input|
       acc + input.to_i(2)
     end
   end
@@ -21,9 +20,9 @@ module DayFourteenPartOne
     inputs.each do |input_set|
       input_set[:inputs].each do |input|
         key = input[:key]
-        value = input[:value].split('')
+        value = input[:binary_value].split('')
         input_set[:mask].each_with_index do |mask_in, index|
-          value[index] = mask_in
+          value[index] = mask_in if mask_in != 'X'
         end
         results[key] = value.join
       end
@@ -39,17 +38,17 @@ module DayFourteenPartOne
                    .split_inputs_by_line(input)
       mask = mem_inputs[0]
       mem_inputs.delete_at(0)
-      i = 0
       {
-        mask: mask.split('').each_with_object({}) do |mask_in, acc|
-          acc[i] = mask_in if mask_in != 'X'
-          i += 1
-        end,
+        mask: mask.split(''),
         inputs: mem_inputs.map do |mem_input|
           trim_inputs = mem_input.tr('mem[] ', '').split('=')
+          key = trim_inputs[0].to_i
+          value = trim_inputs[1].to_i
           {
-            key: trim_inputs[0].to_i,
-            value: '%036b' % trim_inputs[1].to_i.to_s(2)
+            key: key,
+            binary_key: key.to_s(2).rjust(36, '0'),
+            value: value,
+            binary_value: value.to_s(2).rjust(36, '0')
           }
         end
       }
@@ -57,5 +56,5 @@ module DayFourteenPartOne
   end
 end
 
-ap DayFourteenPartOne.solve(__dir__ + '/14test.txt')
-# ap DayFourteenPartOne.solve(__dir__ + '/14.txt')
+# ap DayFourteenPartOne.solve(__dir__ + '/14test.txt')
+ap DayFourteenPartOne.solve(__dir__ + '/14.txt')

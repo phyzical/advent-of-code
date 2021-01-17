@@ -1,10 +1,11 @@
 require_relative 'helpers.rb'
+require_relative '22.1.rb'
 
-module DayTwentyTwoPartOne
+module DayTwentyTwoPartTwo
   module_function
 
   def solve(file)
-    decks = prepare_inputs(file)
+    decks = DayTwentyTwoPartOne.prepare_inputs(file)
     winning_deck = find_winner(decks)
     get_score(winning_deck)
   end
@@ -18,7 +19,15 @@ module DayTwentyTwoPartOne
   def find_winner(decks) 
     a_length = decks[0].length
     b_length = decks[1].length
+    history = [].push(decks.clone)
     while (a_length > 0 && b_length > 0)
+      infinite_loop_check = history.find do |history_decks|
+        history_decks[0] == decks[0]
+        history_decks[1] == decks[1]
+      end
+
+      return if infinite_loop_check
+
       a_card = decks[0].shift
       b_card = decks[1].shift
 
@@ -32,23 +41,16 @@ module DayTwentyTwoPartOne
 
       a_length = decks[0].length
       b_length = decks[1].length
+      history.push(decks.clone)
     end
     return decks[1] if a_length == 0
     return decks[0] if b_length == 0
-  end
-
-  def prepare_inputs(file)
-    Helpers.read_file(file).split("\n\n").map do |deck|
-      deck = deck.split("\n")
-      deck.shift
-      deck.map(&:to_i)
-    end
   end
 end
 
 
 
 
-#ap DayTwentyTwoPartOne.solve(__dir__ + '/22test.txt')
+ap DayTwentyTwoPartTwo.solve(__dir__ + '/22test.txt')
 
-ap DayTwentyTwoPartOne.solve(__dir__ + '/22.txt')
+#ap DayTwentyTwoPartTwo.solve(__dir__ + '/22.txt')

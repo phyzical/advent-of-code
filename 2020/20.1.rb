@@ -8,8 +8,14 @@ module DayTwentyPartOne
   end
 
   def prepare_inputs(file)
-    Helpers
-    .split_inputs_by_line(Helpers.read_file(file))
+    Helpers.read_file(file).split("\n\n").map do |tile| 
+      tiles = tile.split("\n")
+      id = tiles.shift.split(" ")[1].tr(":","").to_i
+      {
+        inputs: tiles,
+        id: id
+      }
+    end
   end
 end
 

@@ -1,0 +1,127 @@
+run-2017:
+	python ${FILE}
+
+2017-1-1:
+	make run-2017 FILE=2017/1.1.py
+2017-1-2:
+	make run-2017 FILE=2017/1.2.py
+
+2017-2-1:
+	make run-2017 FILE=2017/2.1.py
+2017-2-2:
+	make run-2017 FILE=2017/2.2.py
+
+2017-3-1:
+	make run-2017 FILE=2017/3.1.py
+2017-3-2:
+	make run-2017 FILE=2017/3.2.py
+
+2017-4-1:
+	make run-2017 FILE=2017/4.1.py
+2017-4-2:
+	make run-2017 FILE=2017/4.2.py
+
+2017-5-1:
+	make run-2017 FILE=2017/5.1.py
+2017-5-2:
+	make run-2017 FILE=2017/5.2.py
+
+2017-6-1:
+	make run-2017 FILE=2017/6.1.py
+2017-6-2:
+	make run-2017 FILE=2017/6.2.py
+
+2017-7-1:
+	make run-2017 FILE=2017/7.1.py
+2017-7-2:
+	make run-2017 FILE=2017/7.2.py
+
+2017-8-1:
+	make run-2017 FILE=2017/8.1.py
+2017-8-2:
+	make run-2017 FILE=2017/8.2.py
+
+2017-9-1:
+	make run-2017 FILE=2017/9.1.py
+2017-9-2:
+	make run-2017 FILE=2017/9.2.py
+
+2017-10-1:
+	make run-2017 FILE=2017/10.1.py
+2017-10-2:
+	make run-2017 FILE=2017/tenTwo.py
+
+2017-11-1:
+	make run-2017 FILE=2017/11.1.py
+2017-11-2:
+	make run-2017 FILE=2017/11.2.py
+
+2017-12-1:
+	make run-2017 FILE=2017/12.1.py
+2017-12-2:
+	make run-2017 FILE=2017/12.2.py
+
+2017-13-1:
+	make run-2017 FILE=2017/13.1.py
+2017-13-2:
+	make run-2017 FILE=2017/13.2.py
+
+2017-14-1:
+	make run-2017 FILE=2017/14.1.py
+2017-14-2:
+	make run-2017 FILE=2017/14.2.py
+
+2017-15-1:
+	make run-2017 FILE=2017/15.1.py
+2017-15-2:
+	make run-2017 FILE=2017/15.2.py
+
+2017-16-1:
+	make run-2017 FILE=2017/16.1.py
+2017-16-2:
+	make run-2017 FILE=2017/16.2.py
+
+2017-17-1:
+	make run-2017 FILE=2017/17.1.py
+2017-17-2:
+	make run-2017 FILE=2017/17.2.py
+
+2017-18-1:
+	make run-2017 FILE=2017/18.1.py
+2017-18-2:
+	make run-2017 FILE=2017/18.2.py
+
+2017-19-1:
+	make run-2017 FILE=2017/19.1.py
+2017-19-2:
+	make run-2017 FILE=2017/19.2.py
+
+2017-20-1:
+	make run-2017 FILE=2017/20.1.py
+2017-20-2:
+	make run-2017 FILE=2017/20.2.py
+
+2017-21-1:
+	make run-2017 FILE=2017/21.1.py
+2017-21-2:
+	make run-2017 FILE=2017/21.2.py
+
+2017-22-1:
+	make run-2017 FILE=2017/22.1.py
+2017-22-2:
+	make run-2017 FILE=2017/22.2.py
+
+2017-23-1:
+	make run-2017 FILE=2017/23.1.py
+2017-23-2:
+	make run-2017 FILE=2017/23.2.py
+
+2017-24-1:
+	make run-2017 FILE=2017/24.1.py
+2017-24-2:
+	make run-2017 FILE=2017/24.2.py
+
+2017-25-1:
+	make run-2017 FILE=2017/25.1.py
+2017-25-2:
+	make run-2017 FILE=2017/25.2.py

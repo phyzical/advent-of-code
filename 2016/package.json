@@ -1,7 +1,0 @@
-{
-  "name": "2016",
-  "version": "1.0.0",
-  "dependencies": {
-    "blueimp-md5": "^2.13.0"
-  }
-}

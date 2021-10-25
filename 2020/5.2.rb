@@ -11,7 +11,6 @@ module DayFivePartTwo
 
   def find_missing_id(ids)
     (0..1016).find do |num|
-      puts num
       !ids.count(num - 1).zero? &&
         !ids.count(num + 1).zero?
     end

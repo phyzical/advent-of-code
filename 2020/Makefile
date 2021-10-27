@@ -101,3 +101,19 @@ run-2020:
 	make run-2020 FILE=2020/22.1.rb
 2020-22-2:
 	make run-2020 FILE=2020/22.2.rb
+2020-23-1:
+	make run-2020 FILE=2020/23.1.rb
+2020-23-2:
+	make run-2020 FILE=2020/23.2.rb
+2020-24-1:
+	make run-2020 FILE=2020/24.1.rb
+2020-24-2:
+	make run-2020 FILE=2020/24.2.rb
+2020-25-1:
+	make run-2020 FILE=2020/25.1.rb
+2020-25-2:
+	make run-2020 FILE=2020/25.2.rb
+2020-26-1:
+	make run-2020 FILE=2020/26.1.rb
+2020-26-2:
+	make run-2020 FILE=2020/26.2.rb

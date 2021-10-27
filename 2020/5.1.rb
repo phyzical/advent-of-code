@@ -5,38 +5,37 @@ module DayFivePartOne
 
   def solve(file)
     inputs = prepare_inputs(file)
-    find_highest_id(inputs)
+    calculate_ids(inputs).max
   end
 
-  def find_highest_id(inputs)
-    inputs.reduce(0) do |result, input|
+  def calculate_ids(inputs)
+    inputs.map do |input|
       row_index_end = 127
       row_index_start = 0
       column_index_start = 0
       column_index_end = 7
-      input.split('').each do |char|
-        if char == 'B'
-          row_index_start = row_index_end - (row_index_end - row_index_start) / 2
-        elsif char == 'F'
+      input.chars.each do |char|
+        case char
+        when 'B'
+          row_index_start =
+            row_index_end - ((row_index_end - row_index_start) / 2)
+        when 'F'
           row_index_end -= (row_index_end - row_index_start) / 2
-        elsif char == 'R'
-          column_index_start = column_index_end - (column_index_end - column_index_start) / 2
+        when 'R'
+          column_index_start =
+            column_index_end - ((column_index_end - column_index_start) / 2)
         else
           column_index_end -= (column_index_end - column_index_start) / 2
         end
       end
-      id = row_index_start * 8 + column_index_start
-      # puts "Row #{row_index_start} Column #{column_index_start} id #{id}"
-      result = id if id > result
-      result
+      (row_index_start * 8) + column_index_start
     end
   end
 
   def prepare_inputs(file)
-    Helpers
-      .split_inputs_by_line(Helpers.read_file(file))
+    Helpers.split_inputs_by_line(Helpers.read_file(file))
   end
 end
 
 # puts DayFivePartOne.solve(__dir__ + '/5test.txt')
-puts DayFivePartOne.solve(__dir__ + '/5.txt')
+puts DayFivePartOne.solve("#{__dir__}/5.txt")

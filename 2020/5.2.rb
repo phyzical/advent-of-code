@@ -5,38 +5,26 @@ module DayFivePartTwo
 
   def solve(file)
     inputs = DayFivePartOne.prepare_inputs(file)
-    ids = get_ids(inputs)
-    find_missing_id(ids)
+    ids = DayFivePartOne.calculate_ids(inputs)
+    find_missing_ids(ids)
   end
 
-  def find_missing_id(ids)
-    (0..1016).find do |num|
-      !ids.count(num - 1).zero? &&
-        !ids.count(num + 1).zero?
-    end
-  end
-
-  def get_ids(inputs)
-    inputs.map do |input|
-      row_index_end = 127
-      row_index_start = 0
-      column_index_start = 0
-      column_index_end = 7
-      input.split('').each do |char|
-        if char == 'B'
-          row_index_start = row_index_end - (row_index_end - row_index_start) / 2
-        elsif char == 'F'
-          row_index_end -= (row_index_end - row_index_start) / 2
-        elsif char == 'R'
-          column_index_start = column_index_end - (column_index_end - column_index_start) / 2
-        else
-          column_index_end -= (column_index_end - column_index_start) / 2
-        end
+  def find_missing_ids(ids)
+    ## for each id
+    ## find an id +2 or -2
+    ## then our id is +1 or -1 only if its not in list
+    numbers = []
+    ids.each do |num|
+      if ids.count(num - 2).positive? && ids.count(num - 1).zero?
+        numbers << (num - 1)
       end
-      row_index_start * 8 + column_index_start
+      if ids.count(num + 2).positive? && ids.count(num + 1).zero?
+        numbers << (num + 1)
+      end
     end
+    numbers.uniq
   end
 end
 
 # puts DayFivePartTwo.solve(__dir__ + '/5test.txt')
-puts DayFivePartTwo.solve(__dir__ + '/5.txt')
+puts DayFivePartTwo.solve("#{__dir__}/5.txt")

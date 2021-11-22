@@ -1,4 +1,5 @@
 require 'awesome_print'
+require 'byebug'
 
 module Helpers
   module_function
@@ -13,5 +14,11 @@ module Helpers
 
   def split_inputs_by_space(file_contents)
     file_contents.split
+  end
+
+  def print_grid(array)
+    ap array[0].reduce('') { |acc, _x| "#{acc}----" }
+    array.each { |o| ap "| #{o.join(' | ')} |" }
+    ap array[0].reduce('') { |acc, _x| "#{acc}----" }
   end
 end

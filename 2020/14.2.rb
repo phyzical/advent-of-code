@@ -6,8 +6,9 @@ module DayFourteenPartTwo
 
   def solve(file)
     inputs = DayFourteenPartOne.prepare_inputs(file)
+    ap inputs
     masked_inputs = apply_mask(inputs)
-    ap masked_inputs
+    ap masked_inputs.count
     DayFourteenPartOne.find_sum(masked_inputs)
   end
 
@@ -15,28 +16,27 @@ module DayFourteenPartTwo
     results = {}
     inputs.each do |input_set|
       input_set[:inputs].each do |input|
-        key = input[:binary_key].split('')
-        keys_to_update = [key]
-        input_set[:mask].each_with_index do |mask_in, index|
-          keys_to_update = if mask_in == 'X'
-                             ## do all variations
-                             keys_to_update.each_with_object([]) do |key_input, acc|
-                               input_zero = key_input.clone
-                               input_one = key_input.clone
-                               input_zero[index] = '0'
-                               input_one[index] = '1'
+        keys_to_update = input[:binary_key].split('')
+        input_set[:mask].each_with_index do |mask_input, index|
+          keys_to_update =
+            if mask_input == 'X'
+              ## do all variations
+              keys_to_update.each_with_object([]) do |key_input, acc|
+                input_zero = key_input.clone
+                input_one = key_input.clone
+                input_zero[index] = '0'
+                input_one[index] = '1'
 
-                               acc.push(input_zero)
-                               acc.push(input_one)
-                             end
-                           else
-                             keys_to_update.map do |key_input|
-                               key_input[index] = mask_in
-                               key_input
-                             end
-                           end
+                acc.push(input_zero)
+                acc.push(input_one)
+              end
+            else
+              keys_to_update.map do |key_input|
+                key_input[index] = mask_input
+                key_input
+              end
+            end
         end
-        ap inputs
         keys_to_update.uniq.each do |key_input|
           key_input = key_input.join.to_i(2)
           results[key_input] = input[:binary_value]

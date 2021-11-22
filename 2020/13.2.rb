@@ -30,12 +30,13 @@ module DayThirteenPartTwo
   end
 
   def prepare_inputs(file)
-    inputs = Helpers
-             .split_inputs_by_line(Helpers.read_file(file))
-    inputs[1].split(',').map do |input|
-      input = 0 if input == 'x'
-      input.to_f
-    end
+    inputs = Helpers.split_inputs_by_line(Helpers.read_file(file))
+    inputs[1]
+      .split(',')
+      .map do |input|
+        input = 0 if input == 'x'
+        input.to_i
+      end
   end
 end
 ap DayThirteenPartTwo.solve(__dir__ + '/13.2.1test.txt')

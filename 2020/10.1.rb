@@ -19,21 +19,22 @@ module DayTenPartOne
 
     difference = last_min - res[:voltage]
     res[:voltage] = last_min
-    if difference == 3
+    case difference
+    when 3
       res[:three] += 1
-    elsif difference == 1
+    when 1
       res[:one] += 1
     end
     inputs.delete_at(inputs.index(last_min))
+
     find_jumps(inputs, res)
   end
 
   def prepare_inputs(file)
-    Helpers
-      .split_inputs_by_line(Helpers.read_file(file)).map(&:to_i)
+    Helpers.split_inputs_by_line(Helpers.read_file(file)).map(&:to_i)
   end
 end
 
 # ap DayTenPartOne.solve(__dir__ + '/10test.txt')
 # ap DayTenPartOne.solve(__dir__ + '/10test2.txt')
-ap DayTenPartOne.solve(__dir__ + '/10.txt')
+ap DayTenPartOne.solve("#{__dir__}/10.txt")

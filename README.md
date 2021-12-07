@@ -496,20 +496,20 @@ to run any question simply `make YEAR-QUESTION-PART` i.e `make 2017-1-1`
 
 # 2021 in php # 
 
-01.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
-01.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+01.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
+01.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 
-02.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
-02.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+02.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
+02.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 
-03.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
-03.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+03.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
+03.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 
-04.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
-04.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+04.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
+04.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 
-05.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
-05.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
+05.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
+05.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/golden_star.png)
 
 06.1 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)
 06.2 ![alt text](https://raw.githubusercontent.com/phyzical/advent-of-code/master/cross.png)

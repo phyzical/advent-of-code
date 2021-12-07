@@ -1,65 +1,93 @@
-def solve(input):
-    rows = input.splitlines()
-    grid = []
-    centerX = 0
-    centerY = (len(rows)-1)/2
-    for row in rows:
-        tempRow = []
-        centerX = (len(row)-1)/2
-        for char in row:
-            tempRow.append(char)
-        grid.append(tempRow)
-    direction = 'up'
-    currentX = centerX
-    currentY = centerY
-    count = 0
-    i = 0
-    while i < 10000:
-        i += 1
-        currentNode = grid[currentY][currentX]
-        if currentNode == '.':
-            if direction == 'up':
-                direction = 'left'
-            elif direction == 'left':
-                direction = 'down'
-            elif direction == 'down':
-                direction = 'right'
-            else:
-                direction = 'up'
-            count += 1
-            grid[currentY][currentX] = '#'
+from helpers import  rotate90
+from functools import reduce
+def prepareInputs(filename):
+    return map( 
+        (lambda x: map( (lambda y:  map( (lambda z:list(z)), y.split("/"))), x.split(" => ") )),
+         open(filename, "r").read().splitlines()
+    )
+
+def getPossiblePatterns(rule):
+    rules = []
+    result = rule[0]
+    rule = rule[1]
+    ruleLength = len(rule)
+    rules.append(rule)
+    ## right
+    rightRule = rotate90(rule)
+    rules.append(rightRule)
+    ## down
+    downRule = rotate90(rightRule)
+    rules.append(downRule)
+    ## left
+    leftRule = rotate90(downRule)
+    rules.append(leftRule)
+    ## flip
+    if ruleLength == 3:
+        rules.append([rule[2], rule[1], rule[0]])
+    else:
+        rules.append([rule[1], rule[0]])
+    ## mirror
+    if ruleLength == 3:
+        rules.append([rule[0].reverse(), rule[1].reverse(), rule[2].reverse()])
+    else:
+        rules.append([rule[0].reverse(), rule[1].reverse()])
+    return {"result":result, "rules": rules}
+
+def findMatchingRules(rules, grid):
+    for rule in rules:
+        try:
+            toString = lambda acc,x: acc + "".join(x)
+            stringRules = map(toString, rule["rules"])
+            print(stringRules)
+            # problems around here somehwere
+            stringRules.index(reduce(toString,grid, ""))
+        except:
+            a =""
         else:
-            if direction == 'up':
-                direction = 'right'
-            elif direction == 'right':
-                direction = 'down'
-            elif direction == 'down':
-                direction = 'left'
-            else:
-                direction = 'up'
-            grid[currentY][currentX] = '.'
-        if direction == 'up':
-            currentY -= 1
-        elif direction == 'right':
-            currentX += 1
-        elif direction == 'down':
-            currentY += 1
+            return rule["result"]
+    
+
+def solve(filename, iterations):
+    rules = prepareInputs(filename)
+    rules = map(getPossiblePatterns, rules)
+    grid = [".#.",
+            "..#",
+            "###"]
+    grid = map( (lambda z:list(z)), grid)
+
+    grids = []
+    for iteration in range(0,iterations - 1):
+        even = (len(grid[0]) %  2) == 0
+        if even:
+            for y in range(0,len(grid)-1):
+                for x in range(0,len(grid[0])-1):
+                  
+                    grids.append(findMatchingRules(rules,[
+                        [grid[y][x], grid[y][x+1]],
+                        [grid[y+1][x], grid[y+1][x+1]]
+                    ]))
         else:
-            currentX -= 1
-        if currentX < 0 or currentX >= len(grid[0]):
-            currentX += 1
-            for row in grid:
-                row.append('.')
-                row.insert(0,'.')
-        elif currentY < 0 or currentY >= len(grid):
-            currentY += 1
-            grid.append(['.'] * len(grid[0]))
-            grid.insert(0,['.'] * len(grid[0]))
-    return count
+            for y in range(0,len(grid)-2):
+                for x in range(0,len(grid[0])-2):
+                    print([
+                       [grid[y][x], grid[y][x+1], grid[y][x+2]],
+                        [grid[y+1][x], grid[y+1][x+1], grid[y+1][x+2]],
+                        [grid[y+2][x], grid[y+2][x+1], grid[y+2][x+2]]
+                    ])
+                    print(rules)
+
+                    grids.append(findMatchingRules(rules,[
+                        [grid[y][x], grid[y][x+1], grid[y][x+2]],
+                        [grid[y+1][x], grid[y+1][x+1], grid[y+1][x+2]],
+                        [grid[y+2][x], grid[y+2][x+1], grid[y+2][x+2]]
+                    ]))
+        
+        print(grids)
+        
 
 
 
-testOneResult = solve(open("2017/22test.txt", "r").read())
-print(testOneResult, testOneResult == 5587)
-print(solve(open("2017/22.txt", "r").read()))
+testOneResult = solve("2017/22test.txt", 2)
+print(testOneResult, testOneResult == 12)
+# print(solve("2017/22.txt"), 5)
 

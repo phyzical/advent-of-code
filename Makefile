@@ -6,4 +6,4 @@ include 2020/Makefile
 include 2021/Makefile
 
 install-dependencies:
-	bundle install && npm i
+	bundle install && npm i && pip3 install -r requirements.txt

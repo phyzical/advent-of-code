@@ -8,10 +8,10 @@ class DaySixPartTwo
     {
         $fish = DaySixPartOne::prepareInputs($filename);
         $fish = DaySixPartOne::breedFish($fish, 256);
-        echo count($fish) . "\n";
+        echo array_sum($fish) . "\n";
     }
 }
 
 $class = new DaySixPartTwo();
-$class->solve("/2021/6test.txt");
-// $class->solve("/2021/6.txt");
+// $class->solve("/2021/6test.txt");
+$class->solve("/2021/6.txt");

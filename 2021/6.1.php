@@ -8,33 +8,37 @@ class DaySixPartOne
     {
         $fish = DaySixPartOne::prepareInputs($filename);
         $fish = $this->breedFish($fish, 80);
-        echo count($fish) . "\n";
+        echo array_sum($fish) . "\n";
     }
 
     static function breedFish($fish, $days)
     {
-        foreach (range(0, $days - 1) as $day) {
-            $newFish = [];
+        $fishies = array_fill(0, 9, 0);
 
-            foreach ($fish as $key => $fishy) {
-                if (!$fishy) {
-                    $fish[$key] = 6;
-                    $newFish[] = 8;
-                } else {
-                    $fish[$key] = $fishy - 1;
-                }
-            }
-
-            $fish = array_merge($fish, $newFish);
-            echo "day: " . $day . "\n";
+        foreach ($fish as $fishy) {
+            $fishies[$fishy] += 1;
         }
 
-        return $fish;
+        foreach (range(0, $days - 1) as $day) {
+            $newFish = array_fill(0, 9, 0);
+            foreach (range(8, 0) as $key) {
+                $fishyCount  = $fishies[$key];
+                if (!$key) {
+                    $newFish[6] += $fishyCount;
+                    $newFish[8] += $fishyCount;
+                } else {
+                    $newFish[$key - 1] = $fishyCount;
+                }
+            }
+            $fishies =  $newFish;
+        }
+
+        return $fishies;
     }
 
     static function prepareInputs($filename)
     {
-        return explode(",", Helpers::getFileContents($filename));
+        return array_map("intval", explode(",", Helpers::getFileContents($filename)));
     }
 }
 

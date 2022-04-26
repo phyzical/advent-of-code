@@ -1,5 +1,6 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'awesome_print'
-gem 'rubocop'
-gem 'solargraph'
+gem "awesome_print"
+gem "byebug"
+gem "rubocop"
+gem "solargraph"

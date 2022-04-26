@@ -15,4 +15,11 @@ class Helpers
     {
         return explode("\n", Helpers::getFileContents($filename));
     }
+
+    static function arrays_equal($arrayA, $arrayB)
+    {
+        sort($arrayA);
+        sort($arrayB);
+        return $arrayA == $arrayB;
+    }
 }

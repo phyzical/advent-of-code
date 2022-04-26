@@ -1,3 +1,5 @@
+import math
+import copy
 def decimalToBinary(num):
     return bin(num).replace("0b", "")
 
@@ -130,8 +132,13 @@ def chunk(l, n):
     return (l[i:i+n] for i in range(0, len(l), n))
 
 def rotate90(grid):
-    rotatedGrid = grid[:]
+    rotatedGrid = copy.deepcopy(grid)[:]
     for i in range (0, len(grid)):
         for j in range (0, len(grid)):
             rotatedGrid[i][j] = grid[-(j+1)][i][:]
     return rotatedGrid
+
+
+def print_grid(grid):
+  print('\n'.join(' '.join(str(x) for x in row) for row in grid))
+  print("\n")

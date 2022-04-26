@@ -76,4 +76,3 @@ def solve(input):
 testOneResult = solve(open("2017/22test.txt", "r").read())
 print(testOneResult, testOneResult == 2511944)
 print(solve(open("2017/22.txt", "r").read()))
-

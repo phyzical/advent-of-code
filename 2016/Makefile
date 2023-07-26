@@ -1,5 +1,6 @@
 run-2016:
-	cd 2016 && npm i
+# nvm use && npm i
+	cd 2016 
 	node  --stack-size=9999 ${FILE}
 
 2016-1-1:

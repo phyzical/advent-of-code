@@ -2,14 +2,14 @@ const helpers = require('./helpers')
 
 const fs = require('fs');
 
-function solve(input,length){
-    while(input.length < length) {
+function solve(input, length) {
+    while (input.length < length) {
         const finalInput = input + '0'
-        const secondHalf = helpers.reverse(input).replace(/0/g,'x').replace(/1/g,'0').replace(/x/g,'1')
+        const secondHalf = helpers.stringReverse(input).replace(/0/g, 'x').replace(/1/g, '0').replace(/x/g, '1')
         input = finalInput + secondHalf
 
     }
-    input = input.slice(0,length)
+    input = input.slice(0, length)
     let inputs = input
     while ((inputs.length % 2) == 0) {
         inputs = inputs.match(/.{1,2}/g).map(couple => {
@@ -26,4 +26,4 @@ function solve(input,length){
     }
     return inputs
 }
-console.log(solve('10001110011110000',35651584));
+console.log(solve('10001110011110000', 35651584));

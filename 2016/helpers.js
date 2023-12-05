@@ -7,10 +7,18 @@ module.exports.displayBoard = (board) => {
         buffer += '\n';
     }
     console.log(buffer);
+    return buffer
+}
+
+module.exports.generateBoard = (x, y) => {
+    return Array.apply(null, Array(y)).map(_ => Array.apply(null, Array(x)).map(_ => false))
 }
 
 module.exports.stringReverse = (s) => {
     return s.split("").reverse().join("");
+}
+module.exports.evalString = (str) => {
+    return Function(`'use strict'; return (${str})`)()
 }
 
 module.exports.toFixed = (x) => {
@@ -30,9 +38,13 @@ module.exports.toFixed = (x) => {
     }
     return x;
 }
-
+const alphabet = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 module.exports.alphabetArray = () => {
-    return ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    return alphabet.split('');
+}
+
+module.exports.alphabetToNumber = (char) => {
+    return alphabet.indexOf(char);
 }
 
 module.exports.chunkArray = (arr, n) => {
@@ -50,3 +62,7 @@ module.exports.uniqueChars = (chars) => {
         return chars.indexOf(element) === index;
     })
 }
+
+module.exports.arrayMax = (a, b) => Math.max(a, b);
+
+module.exports.clone = (a) => JSON.parse(JSON.stringify(a))

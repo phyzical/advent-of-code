@@ -2,44 +2,44 @@ const fs = require("fs");
 
 const solve = (input) => {
     const directories = parseInput(input).directories
-    console.log(directories)
     const calculatedDirectories = calculateTrueTotalSizes(directories)
-    console.log(calculatedDirectories)
     const totalSize = sumTotalDirsBelowLimit(calculatedDirectories, 100000)
-    console.log(totalSize)
     return totalSize
 };
 
 const calculateTrueTotalSizes = (directories) => {
-    //TODO: sort keys by size
-    // then starting with longest workout where other keys are within
-    // i.e /ae is part of /a and /
-    // so total size of /ae needs to go into /a and /
-    // and due to ordering / will end up with /ae + /a + /ae + /
+    const sortedKeys = Object.keys(directories).sort((x, y) => (y.match(/,/g) || []).length - (x.match(/,/g) || []).length)
+    sortedKeys.forEach((keyLookup) => {
+        console.log(keyLookup)
 
-    // given x /abcd , y / will /, /a, /ab, /abc, /abcd 
-    // ~ /abcd.totalSize * (x.len - y.len + 1)
-    // ~ /abcd.totalSize * 5
-    // given x /abcd, y /ab its /ab, /abc, /abcd
-    // ~ /abcd.totalSize * (x.len - y.len + 1)
-    // ~ /abcd.totalSize * 3
-    // given x /abcdefghj, y /abc its /abc, /abcd,/abcde,/abcdef,/abcdefg,/abcdefgh,/abcdefghj,
-    // ~ /abcd.totalSize * (10 - 4 + 1)
-    // ~ /abcd.totalSize * 7
+        const objLookup = directories[keyLookup]
+        if (objLookup.totalSize > 0)
+            while (keyLookup.length > 1) {
+                keyLookup = cdDotDot(keyLookup)
+                directories[keyLookup].totalSize += objLookup.totalSize
+            }
+    })
 
     return directories
 }
 
 const sumTotalDirsBelowLimit = (input, limit) => {
+    Object.entries(input).forEach(([key, value]) => {
+        input[key].originalTotal = value.totalSize
+    })
     return Object.entries(input).reduce((acc, [key, value]) => {
-        if (parseInt(value.totalSize) <= limit) {
+        if (parseInt(value.originalTotal) <= limit) {
             acc += parseInt(value.totalSize)
         }
         return acc
     }, 0)
 }
 
-
+const cdDotDot = (dir) => {
+    dir = dir.split(",")
+    dir.pop()
+    return dir.join(",")
+}
 
 const parseInput = (input) => {
     return input.split("\n").reduce((acc, input) => {
@@ -48,33 +48,38 @@ const parseInput = (input) => {
             switch (dir) {
                 // remove last dir
                 case "..":
-                    acc.currentDir = acc.currentDir.substring(0, acc.currentDir.length - 1)
+                    acc.currentDir = cdDotDot(acc.currentDir)
                     break;
                 case "/":
                     acc.currentDir = "/"
                     break;
                 // append next dir
                 default:
-                    acc.currentDir = `${acc.currentDir}${dir}`
+                    acc.currentDir = `${acc.currentDir},${dir}`
             }
             if (!acc.directories[acc.currentDir])
                 acc.directories[acc.currentDir] = {
                     files: [],
-                    totalSize: 0
+                    dirs: [],
+                    totalSize: 0,
+                    originalTotal: 0
                 }
-        } else if (!input.includes("$ ls") && !input.includes("dir ")) { //must be part of ls response
+        } else if (input.includes("dir ")) { //must be part of ls response
+            const dir = input.replace("dir ", "")
+            acc.directories[acc.currentDir].dirs.push(dir)
+        } else if (!input.includes("$ ls")) { //must be part of ls response
             const [size, filename] = input.split(" ")
             acc.directories[acc.currentDir].files.push({
                 filename,
                 size
             })
-            acc.directories[acc.currentDir].totalSize += parseFloat(size)
+            acc.directories[acc.currentDir].totalSize += parseInt(size)
         }
 
         return acc
     }, { directories: {}, currentDir: "" })
 }
 console.log(solve(fs.readFileSync(__dirname + '/7test.txt', 'utf8')) == 95437);
-// console.log(solve(fs.readFileSync(__dirname + '/7.txt', 'utf8')));
+console.log(solve(fs.readFileSync(__dirname + '/7.txt', 'utf8')));
 
 

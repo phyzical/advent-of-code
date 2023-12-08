@@ -128,7 +128,7 @@ install-dependencies:
 
 submit:
 	@python3 submit.py --year ${YEAR} --day ${DAY} --part ${PART} "${ANSWER}"
-# TODO if correct, then repull example and repull html
+# TODO if correct repul
 # make update_question YEAR=${YEAR} DAY=${DAY} 
 bootstrap:
 	@mkdir -p `date +%Y` || echo "${YEAR}/${DAY} already exists"; \
@@ -139,12 +139,7 @@ bootstrap:
 				mkdir -p "$$FOLDER" || echo "$$FOLDER already exists" && \
 				if [ ! -f "$$FOLDER/example.txt" ]; then \
 					make update_question YEAR=$$YEAR DAY=$$DAY; \
-				fi && \
-				if [ ! -f "$$FOLDER/input.txt" ]; then \
-					AOC_SESSION=${AOC_SESSION} aocd $$YEAR $$DAY > "$$FOLDER/input.txt"; \
-				fi && \
-				make update_question YEAR=$$YEAR DAY=$$DAY && \
-				sleep 10; \
+				fi \
 			fi \
 		done \
     done 
@@ -152,5 +147,6 @@ bootstrap:
 update_question:	
 	@DAY_CLEANED=`bc<<<${DAY}` && \
 	curl  -X GET -H 'Cookie: session=${AOC_SESSION}' https://adventofcode.com/${YEAR}/day/$$DAY_CLEANED > "${YEAR}/${DAY}/question.html"
-#AOC_SESSION=${AOC_SESSION} aocd ${YEAR} ${DAY} --example > "${YEAR}/${DAY}/example.txt";
+	AOC_SESSION=${AOC_SESSION} aocd ${YEAR} ${DAY} --example > "${YEAR}/${DAY}/example.txt"
+	AOC_SESSION=${AOC_SESSION} aocd ${YEAR} ${DAY} > "${YEAR}/${DAY}/input.txt"
 

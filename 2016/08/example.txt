@@ -1,0 +1,14 @@
+                    --- Day 8: Two-Factor Authentication ---                    
+                      https://adventofcode.com/2016/day/8                       
+------------------------------- Example data 1/1 -------------------------------
+rect 3x2
+rotate column x=1 by 1
+rotate row y=0 by 4
+rotate column x=1 by 1
+--------------------------------------------------------------------------------
+answer_a: 6
+answer_b: -
+extra: im=7x3
+--------------------------------------------------------------------------------
+
+

@@ -1,0 +1,25 @@
+                        --- Day 6: Signals and Noise ---                        
+                      https://adventofcode.com/2016/day/6                       
+------------------------------- Example data 1/1 -------------------------------
+eedadn
+drvtee
+eandsr
+raavrd
+atevrs
+tsrnev
+sdttsa
+rasrtv
+nssdts
+ntnada
+svetve
+tesnvt
+vntsnd
+vrdear
+dvrsen
+enarar
+--------------------------------------------------------------------------------
+answer_a: easter
+answer_b: advent
+--------------------------------------------------------------------------------
+
+

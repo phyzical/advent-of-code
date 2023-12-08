@@ -1,0 +1,14 @@
+name: "Boostrapper"
+on:
+  workflow_dispatch:
+jobs:
+  Boostrapper:
+    permissions:
+      contents: read
+    name: "Boostrapper"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - run: |
+        echo "AOC_SESSION=${{secrets.AOC_SESSION}}" > .env
+        make bootstrap

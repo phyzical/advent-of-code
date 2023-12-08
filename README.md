@@ -2,7 +2,9 @@
 
 just a repo for my mucking around learning new languages with advent of code
 
-to run any question simply `make YEAR-QUESTION-PART` i.e `make 2017-1-1`
+to run any question simply `make solve` and follow the prompts
+
+Also make sure to set your session token in .env `export AOC_SESSION=OSEMTHYING`
 
 <details>
 <summary>2015</summary>

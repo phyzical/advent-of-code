@@ -1,7 +1,7 @@
 {
     "dependencies": {
         "@prettier/plugin-ruby": "2.0.0-rc4",
-        "@prettier/plugin-php": "^0.17.6",
+        "@prettier/plugin-php": "^0.24.0",
         "blueimp-md5": "^2.13.0",
         "eslint": "^8.1.0",
         "prettier": "2.4.1"

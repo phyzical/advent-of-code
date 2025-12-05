@@ -131,6 +131,7 @@ submit:
 # TODO if correct repul
 # make update_question YEAR=${YEAR} DAY=${DAY} 
 bootstrap:
+	@pip3 install -r requirements.txt
 	@mkdir -p `date +%Y` || echo "${YEAR}/${DAY} already exists"; \
 	for YEAR in `${YEAR_COMMAND}` ; do \
 		for DAY in `seq -w 1 25` ; do \

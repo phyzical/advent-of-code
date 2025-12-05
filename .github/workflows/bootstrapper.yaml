@@ -1,6 +1,10 @@
 name: "Boostrapper"
 on:
   workflow_dispatch:
+  schedule:
+    # Runs at 00:00 UTC every day in December
+    - cron: "0 0 1-31 12 *"
+
 jobs:
   Boostrapper:
     permissions:
@@ -9,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - run: |
-        echo "AOC_SESSION=${{secrets.AOC_SESSION}}" > .env
-        make bootstrap
+      - name: Set up .env and bootstrap
+        run: |
+          echo "AOC_SESSION=${{secrets.AOC_SESSION}}" > .env
+          make bootstrap

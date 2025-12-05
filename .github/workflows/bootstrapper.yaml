@@ -18,7 +18,7 @@ jobs:
           python-version: "3.x"
 
       - name: Set up .env and bootstrap
-        shell: zsh
+        shell: /usr/bin/zsh
         run: |
           echo "AOC_SESSION=${{secrets.AOC_SESSION}}" > .env
           make bootstrap

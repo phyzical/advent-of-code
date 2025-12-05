@@ -8,7 +8,7 @@ on:
 jobs:
   Boostrapper:
     permissions:
-      contents: read
+      contents: write
     name: "Boostrapper"
     runs-on: ubuntu-latest
     steps:
@@ -21,3 +21,8 @@ jobs:
         run: |
           echo "AOC_SESSION=${{secrets.AOC_SESSION}}" > .env
           make bootstrap
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@28e16e81777b558cc906c8750092100bbb34c5e3 # v7
+        with:
+          commit_message: "Automated commit from GitHub Actions"

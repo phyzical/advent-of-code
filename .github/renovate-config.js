@@ -1,0 +1,46 @@
+module.exports = {
+  username: 'phyzical',
+  gitAuthor: 'phyzical <5182053+phyzical@users.noreply.github.com>',
+  onboarding: false,
+  requireConfig: 'optional',
+  automerge: true,
+  ignoreTests: false,
+  platform: 'github',
+  forkProcessing: 'enabled',
+  labels: ['dependencies'],
+  ignorePaths: [
+    '**/node_modules/**',
+    '**/bower_components/**',
+    '**/vendor/**',
+    '**/examples/**',
+    '**/__tests__/**',
+    '**/tests/**',
+    '**/__fixtures__/**',
+    '**/.terraform/**',
+  ],
+  extends: [
+    ':dependencyDashboard',
+    ':semanticPrefixFixDepsChoreOthers',
+    'group:monorepos',
+    'group:recommended',
+    'replacements:all',
+    'workarounds:all',
+  ],
+  ignorePresets: [':prHourlyLimit2'],
+  prHourlyLimit: 0,
+  prConcurrentLimit: 0,
+  commitMessageAction: 'Upgrade',
+  commitMessageTopic: '{{packageName}}/{{depName}}',
+  commitMessageExtra: '{{currentVersion}} -> {{newVersion}}',
+  customManagers: [
+
+  ],
+  packageRules: [
+    {
+      matchDatasources: ['github-releases'],
+      extractVersion: '^v(?<version>.*)$',
+    },
+    { matchDepTypes: ['development'], addLabels: ['devDependencies'] },
+    { matchDepTypes: ['test'], addLabels: ['testDependencies'] },
+  ],
+};

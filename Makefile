@@ -122,8 +122,12 @@ solve:
 	fi
 	@make solve-${YEAR} FILE="${YEAR}/${DAY}.${PART}${EXTENSION}"
 
+install-base-dependencies:
+	@python3 -m venv venv && \
+	source ./venv/bin/activate && \
+	pip3 install -r requirements.txt
 install-dependencies:
-	@pip3 install -r requirements.txt
+	make install-base-dependencies
 	@make install-dependencies-${YEAR}
 
 submit:
@@ -131,9 +135,11 @@ submit:
 # TODO if correct repul
 # make update_question YEAR=${YEAR} DAY=${DAY} 
 bootstrap:
-	@pip3 install -r requirements.txt
+	make install-base-dependencies
 	@mkdir -p `date +%Y` || echo "${YEAR}/${DAY} already exists"; \
+	echo ${YEAR_COMMAND}; \
 	for YEAR in `${YEAR_COMMAND}` ; do \
+		echo `seq -w 1 25`; \
 		for DAY in `seq -w 1 25` ; do \
 			FOLDER="$$YEAR/$$DAY" && \
 			if [ "`date +%Y`" != "$$YEAR" ] || [ $$DAY -le `date +%d` ]; then \
